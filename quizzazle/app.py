@@ -37,7 +37,30 @@ def home():
 	return render_template('home.html', is_logged=is_logged)
 
 
+@app.route('/slogin', methods=['GET', 'POST'])
+def sign_in():
+	if request.method == 'POST':
+		mail = request.form['email']
+		word = request.form['password']
+		try:
+			username = request.form['username']
+			user = {'mail':mail, 'password':word, 'username':username}
+			db.child('Users').child(login_session['user']['localId']).set(user)
+		except:
+			try:
+				login_session['user'] = auth.create_user_with_email_and_password(mail, word)
+				user = {'mail':mail, 'password':word,}
+				db.child('Users').child(login_session['user']['localId']).set(user)
 
+				return redirect(url_for('add_tweet'))
+			except:
+				print('ERRORROROROROROROR bad')
+
+
+		return redirect(url_for('home'))
+
+
+	return render_template('sign_in.html')
 
 
 
