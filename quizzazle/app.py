@@ -95,23 +95,24 @@ def add_question():
 
 		question_dict = {
 			'question': question,
-			'awnsers':
-					{awnser_1: True,
+			'by': login_session['user']['localId'],
+			'answers': {
+					awnser_1: True,
 					awnser_2: False,
 					awnser_3: False,
-					awnser_4: False}
-			}
-
-		print(question_dict)
+					awnser_4: False }	}
 
 		db.child('questions').push(question_dict)
-
-
+	
 	return render_template('add_question.html')
 
 
 
-
+@app.route('/quiz', methods=['GET', 'POST'])
+def quiz():
+	if request.method == 'POST':
+		pass
+	return render_template('quiz_yourself.html')
 
 
 
