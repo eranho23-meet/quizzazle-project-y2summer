@@ -61,7 +61,7 @@ def slog_in():
 			username = request.form['username']
 			# if username == '':
 			# 	raise('Exception')
-			user = {'mail':mail, 'password':word, 'username':username}
+			user = {'mail':mail, 'password':word, 'username':username, 'correct':0, 'wrong':0}
 			login_session['user'] = auth.create_user_with_email_and_password(mail, word)
 			db.child('Users').child(login_session['user']['localId']).set(user)
 		except:
@@ -99,7 +99,8 @@ def add_question():
 		awnser_4 = request.form["awnser4"]
 
 		me = login_session['user']['localId']
-		my_name = list(db.child("Users").child(me).get().val().values())[-1]
+		my_info = dict(db.child("Users").child(me).get().val())
+		my_name = my_info['username']
 
 		question_dict = {
 			'question': question,
@@ -119,18 +120,22 @@ def add_question():
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
-
 	if request.method == 'POST':
-		if request.args.get('is') == '1':
-			print(1)
-		if request.args.get('is') == '2':
-			print(2)
-		if request.args.get('is') == '3':
-			print(3)
-		if request.args.get('is') == '4':
-			print(4)
+		if request.args.get('f') == 'f1':
+			if 'user' in login_session:
+				if not login_session['user'] == None:
+					me = login_session['user']['localId']
+					rightness = dict(db.child("Users").child(me).get().val())['correct'] + 1
+					db.child("Users").child(me).update({'correct':rightness})
+			return redirect(url_for('answer_correct'))
 
-
+		elif request.args.get('f') == 'f2':
+			if 'user' in login_session:
+				if not login_session['user'] == None:
+					me = login_session['user']['localId']
+					wrongness = dict(db.child("Users").child(me).get().val())['wrong'] + 1
+					db.child("Users").child(me).update({'wrong':wrongness})
+			return redirect(url_for('answer_wrong'))
 
 	else:
 		all_questions_id = list(db.child('questions').get().val().keys())
@@ -139,10 +144,30 @@ def quiz():
 		answers = list(random_question.values())[0]
 		question = list(random_question.values())[2]
 
+		return render_template('quiz_yourself.html', answers=list(answers.keys()), correct=list(answers.values()), question=question)
 
 
-		return render_template('quiz_yourself.html', randy=random_question, answers=list(answers.keys()), correctness=list(answers.values()), question=question)
-	return render_template('quiz_yourself.html')
+
+@app.route('/my_stats')
+def stats():
+	try:
+		me = login_session['user']['localId']
+		rightness = dict(db.child("Users").child(me).get().val())['correct']
+		wrongness = dict(db.child("Users").child(me).get().val())['wrong']
+		return render_template('user_stats.html', right=rightness, wrong=wrongness)
+	except:
+		return redirect(url_for('home'))
+
+
+@app.route('/quiz/correct')
+def answer_correct():
+	return render_template('is_correctC.html')
+
+
+
+@app.route('/quiz/wrong')
+def answer_wrong():
+	return render_template('is_correctW.html')
 
 
 

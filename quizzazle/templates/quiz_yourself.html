@@ -13,50 +13,77 @@
 
 
     <div>        
-      <form method="post" action="/quiz?is=1">
-      <div>
+      {% if correct[0] == True %}
+        <form method="post" action="/quiz?f=f1">
+      {% else %}
+        <form method="post" action="/quiz?f=f2">
+      {% endif %}
+
         <div>
-          <button type="submit">{{answers[0]}}</button>
+          <div>
+            <button type="submit">{{answers[0]}}</button>
+          </div>
         </div>
-      </div>
+      </form>
     </div>
 
 
     <div>        
-      <form method="post" action="/quiz?is=2">
+
+      {% if correct[1] == True %}
+        <form method="post" action="/quiz?f=f1">
+      {% else %}
+        <form method="post" action="/quiz?f=f2">
+      {% endif %}
+
       <div>
         <div>
           <button type="submit">{{answers[1]}}</button>
         </div>
       </div>
+     </form>
+
     </div>
 
 
     <div>        
-      <form method="post" action="/quiz?is=3">
+
+      {% if correct[2] == True %}
+        <form method="post" action="/quiz?f=f1">
+      {% else %}
+        <form method="post" action="/quiz?f=f2">
+      {% endif %}
+
       <div>
         <div>
           <button type="submit">{{answers[2]}}</button>
         </div>
       </div>
+     </form>
+
     </div>
 
 
     <div>        
-      <form method="post" action="/quiz?is=4">
+
+      {% if correct[3] == True %}
+        <form method="post" action="/quiz?f=f1">
+      {% else %}
+        <form method="post" action="/quiz?f=f2">
+      {% endif %}
+
       <div>
         <div>
           <button type="submit">{{answers[3]}}</button>
         </div>
       </div>
+      </form>
+
     </div>
 
 
-      {{randy}} <br>
-      {{answers}} <br>
-      {{correctness}}
 
-
+    <a href="/">home</a>
 
   </body>
 </html>
