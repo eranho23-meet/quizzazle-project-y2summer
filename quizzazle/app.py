@@ -84,6 +84,30 @@ def log_out():
 
 
 
+@app.route('/add_question', methods=['GET', 'POST']) 
+def add_question():
+	if request.method == 'POST':
+		question = f'`{request.form["question"]}`'
+		awnser_1 = f'`{request.form["awnser1"]}`'
+		awnser_2 = f'`{request.form["awnser2"]}`'
+		awnser_3 = f'`{request.form["awnser3"]}`'
+		awnser_4 = f'`{request.form["awnser4"]}`'
+
+		question_dict = {
+			'question': question,
+			'awnsers':
+					{awnser_1: True,
+					awnser_2: False,
+					awnser_3: False,
+					awnser_4: False}
+			}
+
+		print(question_dict)
+
+		db.child('questions').push(question_dict)
+
+
+	return render_template('add_question.html')
 
 
 
