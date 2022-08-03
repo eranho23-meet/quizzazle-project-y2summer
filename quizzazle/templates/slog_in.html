@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<title>quizazzle</title>
+  </head>
+  <body>
+
+    <form method="post" action="/slogin">
+
+      <div>
+        <label>Email address*</label>
+        <div>
+            <input type="email"  name="email" required>
+        </div>
+    </div>
+
+      <div>
+        <label>Password*</label>
+        <div>
+          <input type="password"  name="password" minlength="6" required>
+        </div>
+      </div>
+
+      <div>
+        <label>Username (if logging in for the first time)</label>
+        <div>
+          <input type="text"  name="username" maxlength="30">
+        </div>
+      </div>
+        
+      <div>
+          <input type="submit"/>
+      </div>
+    </form>
+
+    <a href='/logout'>log out</a>
+
+  </body>
+</html>
