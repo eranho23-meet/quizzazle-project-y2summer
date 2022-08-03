@@ -54,9 +54,6 @@ def slog_in():
 		mail = request.form['email']
 		word = request.form['password']
 
-
-
-
 		try:
 			username = request.form['username']
 			# if username == '':
@@ -140,9 +137,9 @@ def quiz():
 	else:
 		all_questions_id = list(db.child('questions').get().val().keys())
 		random_id = random.choice(all_questions_id)
-		random_question = db.child('questions').child(random_id).get().val()
-		answers = list(random_question.values())[0]
-		question = list(random_question.values())[2]
+		random_question = list(db.child('questions').child(random_id).get().val().values())
+		answers = random_question[0]
+		question = random_question[2]
 
 		return render_template('quiz_yourself.html', answers=list(answers.keys()), correct=list(answers.values()), question=question)
 
@@ -150,14 +147,20 @@ def quiz():
 
 @app.route('/my_stats')
 def stats():
-	try:
-		me = login_session['user']['localId']
-		rightness = dict(db.child("Users").child(me).get().val())['correct']
-		wrongness = dict(db.child("Users").child(me).get().val())['wrong']
-		return render_template('user_stats.html', right=rightness, wrong=wrongness)
-	except:
-		return redirect(url_for('home'))
-
+	# try:
+	# 	me = login_session['user']['localId']
+	# 	rightness = dict(db.child("Users").child(me).get().val())['correct']
+	# 	wrongness = dict(db.child("Users").child(me).get().val())['wrong']
+	# 	return render_template('user_stats.html', right=rightness, wrong=wrongness)
+	# except:
+	# 	return redirect(url_for('home'))
+	me = login_session['user']['localId']
+	rightness = dict(db.child("Users").child(me).get().val())['correct']
+	wrongness = dict(db.child("Users").child(me).get().val())['wrong']
+	try: barry = rightness/(rightness+wrongness)*100
+	except: barry = 0
+	return render_template('user_stats.html', right=rightness, wrong=wrongness, barry=barry)
+	
 
 @app.route('/quiz/correct')
 def answer_correct():

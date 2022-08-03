@@ -2,88 +2,70 @@
 <html>
   <head>
   	<title>quizazzle</title>
+    <link rel="stylesheet" href="../static/quiz_style.css">
   </head>
   <body>
 
-
-    <div>
+    <div id='question'>
       {{question}}
     </div>
-    <br><br><br>
+
+    <div id='answers'>
 
 
-    <div>        
+    <div class="answer">        
       {% if correct[0] == True %}
-        <form method="post" action="/quiz?f=f1">
+        <form method="post" action="/quiz?f=f1" class="former">
       {% else %}
-        <form method="post" action="/quiz?f=f2">
+        <form method="post" action="/quiz?f=f2" class="former">
       {% endif %}
 
-        <div>
-          <div>
-            <button type="submit">{{answers[0]}}</button>
-          </div>
-        </div>
+        <button type="submit" class="butt" id='red'>{{answers[0]}}</button>
       </form>
     </div>
 
 
-    <div>        
-
+    <div class="answer">        
       {% if correct[1] == True %}
-        <form method="post" action="/quiz?f=f1">
+        <form method="post" action="/quiz?f=f1" class="former">
       {% else %}
-        <form method="post" action="/quiz?f=f2">
+        <form method="post" action="/quiz?f=f2" class="former">
       {% endif %}
 
-      <div>
-        <div>
-          <button type="submit">{{answers[1]}}</button>
-        </div>
-      </div>
+      <button type="submit" class="butt" id='blue'>{{answers[1]}}</button>
      </form>
 
     </div>
 
 
-    <div>        
-
+    <div class="answer">
       {% if correct[2] == True %}
-        <form method="post" action="/quiz?f=f1">
+        <form method="post" action="/quiz?f=f1" class="former">
       {% else %}
-        <form method="post" action="/quiz?f=f2">
+        <form method="post" action="/quiz?f=f2" class="former">
       {% endif %}
 
-      <div>
-        <div>
-          <button type="submit">{{answers[2]}}</button>
-        </div>
-      </div>
-     </form>
-
+          <button type="submit" class="butt" id='yellow'>{{answers[2]}}</button>
+       </form>
     </div>
 
 
-    <div>        
-
+    <div class="answer">
       {% if correct[3] == True %}
-        <form method="post" action="/quiz?f=f1">
+        <form method="post" action="/quiz?f=f1" class="former">
       {% else %}
-        <form method="post" action="/quiz?f=f2">
+        <form method="post" action="/quiz?f=f2" class="former">
       {% endif %}
 
-      <div>
-        <div>
-          <button type="submit">{{answers[3]}}</button>
-        </div>
-      </div>
+            <button type="submit" class="butt" id='green'>{{answers[3]}}</button>
       </form>
-
     </div>
 
+  </div>
 
 
-    <a href="/">home</a>
+
+    <a href="/" id='home'>home</a>
 
   </body>
 </html>

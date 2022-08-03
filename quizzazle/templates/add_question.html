@@ -2,6 +2,7 @@
 <html>
   <head>
   	<title>quizazzle</title>
+    <link rel="stylesheet" href="../static/maker_style.css">
   </head>
   <body>
 
@@ -10,40 +11,27 @@
       <div>
         <label>question</label>
         <div>
-            <input type="text"  name="question" required>
+            <input type="text"  name="question" placeholder='add_question' required>
         </div>
       </div>
 
 
-      <div>
+      <div id='awnsers'>
+              <input type="text"  name="awnser1" placeholder="this answer is the correct one" class='answer' required>
+
         <div>
-          <label>awnser_1</label>
-          <div>
-              <input type="text"  name="awnser1" placeholder="this awnser is the correct one" required>
-          </div>
+              <input type="text"  name="awnser2" placeholder='wrong answer' class='answer' required>
         </div>
 
         <div>
-          <label>awnser_2</label>
-          <div>
-              <input type="text"  name="awnser2" required>
-          </div>
+              <input type="text"  name="awnser3" placeholder='wrong answer' class='answer' required>
         </div>
 
         <div>
-          <label>awnser_3</label>
-          <div>
-              <input type="text"  name="awnser3" required>
+              <input type="text"  name="awnser4" placeholder='wrong answer' class='answer' required>
           </div>
-        </div>
-
-        <div>
-          <label>awnser_4</label>
-          <div>
-              <input type="text"  name="awnser4" required>
-          </div>
-        </div>
       </div>
+
 
 
       <div>
