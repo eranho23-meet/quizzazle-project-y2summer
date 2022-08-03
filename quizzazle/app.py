@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
 import pyrebase
 
-#  (cmd prompt copy paste to get here)
+# cd Documents/GitHub/quizzazle-project/quizzazle
+# (cmd prompt copy paste to get here)
 
 
 config = {
@@ -46,11 +47,10 @@ def sign_in():
 			username = request.form['username']
 			user = {'mail':mail, 'password':word, 'username':username}
 			db.child('Users').child(login_session['user']['localId']).set(user)
+			login_session['user'] = auth.sign_in_with_email_and_password(mail, word)
 		except:
 			try:
 				login_session['user'] = auth.create_user_with_email_and_password(mail, word)
-				user = {'mail':mail, 'password':word,}
-				db.child('Users').child(login_session['user']['localId']).set(user)
 
 				return redirect(url_for('add_tweet'))
 			except:
@@ -58,9 +58,14 @@ def sign_in():
 
 
 		return redirect(url_for('home'))
+	logging_in = True
+	if 'user' in login_session: # checks if there is a user connected or was connected
+		if login_session['user']: # checks if the user is currently connected
+			logging_in = False
 
 
-	return render_template('sign_in.html')
+
+	return render_template('sign_in.html', logger=logging_in)
 
 
 
