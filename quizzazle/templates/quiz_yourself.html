@@ -6,7 +6,57 @@
   <body>
 
 
-      ye
+    <div>
+      {{question}}
+    </div>
+    <br><br><br>
+
+
+    <div>        
+      <form method="post" action="/quiz?is=1">
+      <div>
+        <div>
+          <button type="submit">{{answers[0]}}</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div>        
+      <form method="post" action="/quiz?is=2">
+      <div>
+        <div>
+          <button type="submit">{{answers[1]}}</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div>        
+      <form method="post" action="/quiz?is=3">
+      <div>
+        <div>
+          <button type="submit">{{answers[2]}}</button>
+        </div>
+      </div>
+    </div>
+
+
+    <div>        
+      <form method="post" action="/quiz?is=4">
+      <div>
+        <div>
+          <button type="submit">{{answers[3]}}</button>
+        </div>
+      </div>
+    </div>
+
+
+      {{randy}} <br>
+      {{answers}} <br>
+      {{correctness}}
+
+
 
   </body>
 </html>

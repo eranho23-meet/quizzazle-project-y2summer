@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask import session as login_session
 import pyrebase
+import random
 
 
 
@@ -52,13 +53,17 @@ def slog_in():
 	if request.method == 'POST':
 		mail = request.form['email']
 		word = request.form['password']
+
+
+
+
 		try:
 			username = request.form['username']
-			if username == '':
-				raise('Exception')
+			# if username == '':
+			# 	raise('Exception')
 			user = {'mail':mail, 'password':word, 'username':username}
-			db.child('Users').child(login_session['user']['localId']).set(user)
 			login_session['user'] = auth.create_user_with_email_and_password(mail, word)
+			db.child('Users').child(login_session['user']['localId']).set(user)
 		except:
 			try:
 				login_session['user'] = auth.sign_in_with_email_and_password(mail, word)
@@ -87,15 +92,19 @@ def log_out():
 @app.route('/add_question', methods=['GET', 'POST']) 
 def add_question():
 	if request.method == 'POST':
-		question = f'`{request.form["question"]}`'
-		awnser_1 = f'`{request.form["awnser1"]}`'
-		awnser_2 = f'`{request.form["awnser2"]}`'
-		awnser_3 = f'`{request.form["awnser3"]}`'
-		awnser_4 = f'`{request.form["awnser4"]}`'
+		question = request.form["question"]
+		awnser_1 = request.form["awnser1"]
+		awnser_2 = request.form["awnser2"]
+		awnser_3 = request.form["awnser3"]
+		awnser_4 = request.form["awnser4"]
+
+		me = login_session['user']['localId']
+		my_name = list(db.child("Users").child(me).get().val().values())[-1]
 
 		question_dict = {
 			'question': question,
-			'by': login_session['user']['localId'],
+			'by': me,
+			'username': my_name,
 			'answers': {
 					awnser_1: True,
 					awnser_2: False,
@@ -110,8 +119,29 @@ def add_question():
 
 @app.route('/quiz', methods=['GET', 'POST'])
 def quiz():
+
 	if request.method == 'POST':
-		pass
+		if request.args.get('is') == '1':
+			print(1)
+		if request.args.get('is') == '2':
+			print(2)
+		if request.args.get('is') == '3':
+			print(3)
+		if request.args.get('is') == '4':
+			print(4)
+
+
+
+	else:
+		all_questions_id = list(db.child('questions').get().val().keys())
+		random_id = random.choice(all_questions_id)
+		random_question = db.child('questions').child(random_id).get().val()
+		answers = list(random_question.values())[0]
+		question = list(random_question.values())[2]
+
+
+
+		return render_template('quiz_yourself.html', randy=random_question, answers=list(answers.keys()), correctness=list(answers.values()), question=question)
 	return render_template('quiz_yourself.html')
 
 
