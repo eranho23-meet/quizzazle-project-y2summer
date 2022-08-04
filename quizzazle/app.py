@@ -154,7 +154,8 @@ def stats():
 		me = login_session['user']['localId']
 		rightness = dict(db.child("Users").child(me).get().val())['correct']
 		wrongness = dict(db.child("Users").child(me).get().val())['wrong']
-		return render_template('user_stats.html', right=rightness, wrong=wrongness)
+		barry = f'width: {100*rightness/(rightness+wrongness)}%;'
+		return render_template('user_stats.html', right=rightness, wrong=wrongness, barry=barry)
 	except:
 		return redirect(url_for('home'))
 

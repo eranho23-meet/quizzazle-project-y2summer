@@ -28,17 +28,21 @@ a:hover {
 
 .txtbox {
 	font-size: 60px;
-	width: 80%;
 	margin-bottom: 10px;
 	background-color: #ffb163;
 	border: solid #e09428 3px;
+	text-align: center;
 }
 
 #submit_button {
 	font-size: 40px;
 	height: 60px;
 	width: 20%;
-	margin-bottom: 50px;
+	margin-bottom: 100px;
 	background-color: #6dd682;
 	border: solid 5px #53c269;
+}
+
+.smaller_text {
+	font-size: 40px;
 }
