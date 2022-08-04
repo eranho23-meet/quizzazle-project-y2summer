@@ -1,0 +1,21 @@
+body {
+	background-color: #debeef;
+	text-align: center;
+}
+
+#teller {
+	background-color: green; height: 100%;
+}
+
+#home {
+	font-size: 100px;
+	border: solid #75e3ff 3px;
+	background-color: #70c3f1;
+	color: #3593dd;
+	text-decoration: none;
+}
+
+#home:hover {
+	background-color: #66b6e3;
+	color: #2c84c9;
+}
