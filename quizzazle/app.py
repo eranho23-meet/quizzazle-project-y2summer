@@ -147,20 +147,15 @@ def quiz():
 
 @app.route('/my_stats')
 def stats():
-	# try:
-	# 	me = login_session['user']['localId']
-	# 	rightness = dict(db.child("Users").child(me).get().val())['correct']
-	# 	wrongness = dict(db.child("Users").child(me).get().val())['wrong']
-	# 	return render_template('user_stats.html', right=rightness, wrong=wrongness)
-	# except:
-	# 	return redirect(url_for('home'))
-	me = login_session['user']['localId']
-	rightness = dict(db.child("Users").child(me).get().val())['correct']
-	wrongness = dict(db.child("Users").child(me).get().val())['wrong']
-	try: barry = rightness/(rightness+wrongness)*100
-	except: barry = 0
-	return render_template('user_stats.html', right=rightness, wrong=wrongness, barry=barry)
-	
+	try:
+		me = login_session['user']['localId']
+		rightness = dict(db.child("Users").child(me).get().val())['correct']
+		wrongness = dict(db.child("Users").child(me).get().val())['wrong']
+		return render_template('user_stats.html', right=rightness, wrong=wrongness)
+	except:
+		return redirect(url_for('home'))
+
+
 
 @app.route('/quiz/correct')
 def answer_correct():

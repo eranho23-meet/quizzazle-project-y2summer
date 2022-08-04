@@ -8,40 +8,38 @@
 
 
     <form method="post" action="/add_question">
-      <div>
-        <label>question</label>
         <div>
-            <input type="text"  name="question" placeholder='add_question' required>
-        </div>
-      </div>
-
-
-      <div id='awnsers'>
-              <input type="text"  name="awnser1" placeholder="this answer is the correct one" class='answer' required>
-
-        <div>
-              <input type="text"  name="awnser2" placeholder='wrong answer' class='answer' required>
+              <input type="text"  name="question" placeholder='question' id='question' required>
         </div>
 
-        <div>
-              <input type="text"  name="awnser3" placeholder='wrong answer' class='answer' required>
+
+      <div id='answers'>
+        <div class='answer'>
+              <input type="text"  name="awnser1" placeholder="insert correct answer" class='filliaster' id='red' required>
+        </div>
+        <div class='answer'>
+              <input type="text"  name="awnser2" placeholder='insert wrong answer' class='filliaster' id='blue' required>
         </div>
 
-        <div>
-              <input type="text"  name="awnser4" placeholder='wrong answer' class='answer' required>
+        <div class='answer'>
+              <input type="text"  name="awnser3" placeholder='insert wrong answer' class='filliaster' id='yellow' required>
+        </div>
+
+        <div class='answer'>
+              <input type="text"  name="awnser4" placeholder='insert wrong answer' class='filliaster' id='green' required>
           </div>
       </div>
 
 
 
-      <div>
-          <input type="submit"/>
+      <div id='submit'>
+          <input type="submit" id='submit_button' />
       </div>
 
     </form>
   
     <br>
-    <a href="/">go home</a>
+    <a href="/" id='home'>go home</a>
 
   </body>
 </html>
