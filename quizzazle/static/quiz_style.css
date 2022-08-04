@@ -50,21 +50,39 @@ body {
 }
 
 #red {
+	color: #751207;
 	background-color: #ff5c5c;
 	border: solid #dc143c 5px;
+}#red:hover{
+	color: #69140a;
+	background-color: #d94343;
 }
+
 #blue {
+	color: #0e408f;
 	background-color: #007fff;
 	border: solid #4169e1 5px;
+}#blue:hover{
+	color: #0b3475;
+	background-color: #096fd6;
 }
 #yellow {
+	color: #787114;
 	background-color: #fee12b;
 	border: solid #e4cd05 5px;
+}#yellow:hover{
+	color: #696210;
+	background-color: #ebcf1e;	
+	border: solid #c4ac10 5px;
 }
 #green {
+	color: #116e07;
 	background-color: #7cfc00;
 	border: solid #3bb143 5px;
 
+}#green:hover{
+	color: #0d6104;
+	background-color: #6ad602;
 }
 
 
