@@ -43,8 +43,11 @@ def home(): # home page, nothing special just to go from place to place
 	is_logged = False
 	if 'user' in login_session:
 		if login_session['user']:
-			is_logged = True	
-	return render_template('home.html', is_logged=is_logged)
+			is_logged = True
+			me = login_session['user']['localId']
+			name = db.child('Users').child(me).get().val()['username']
+			return render_template('home.html', is_logged=is_logged, name=name)
+	return render_template('home.html', is_logged=is_logged, name='someone')
 
 
 
@@ -135,14 +138,14 @@ def quiz():
 			return redirect(url_for('answer_wrong'))
 
 	else:
-		all_questions_id = list(db.child('questions').get().val().keys())
-		random_id = random.choice(all_questions_id)
-		random_question = list(db.child('questions').child(random_id).get().val().values())
-		answers = random_question[0]
-		question = random_question[2]
-
-		return render_template('quiz_yourself.html', answers=list(answers.keys()), correct=list(answers.values()), question=question)
-
+		try:
+			all_questions_id = list(db.child('questions').get().val().keys())
+			random_id = random.choice(all_questions_id)
+			random_question = list(db.child('questions').child(random_id).get().val().values())
+			answers = random_question[0]
+			question = random_question[2]
+			return render_template('quiz_yourself.html', answers=list(answers.keys()), correct=list(answers.values()), question=question)
+		except: return redirect(url_for('home'))
 
 
 @app.route('/my_stats')

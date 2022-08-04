@@ -1,0 +1,44 @@
+body {
+	background-color: #debeef;
+	text-align: center;
+}
+
+form {
+	align-text: center;
+}
+
+a {
+	font-size: 100px;
+	border: solid #75e3ff 3px;
+	background-color: #70c3f1;
+	color: #3593dd;
+	text-decoration: none;
+	margin: 30px;
+}
+
+a:hover {
+	background-color: #66b6e3;
+	color: #2c84c9;
+}
+
+.iput {
+	height: 200px;
+	width: 500px;
+}
+
+.txtbox {
+	font-size: 60px;
+	width: 80%;
+	margin-bottom: 10px;
+	background-color: #ffb163;
+	border: solid #e09428 3px;
+}
+
+#submit_button {
+	font-size: 40px;
+	height: 60px;
+	width: 20%;
+	margin-bottom: 50px;
+	background-color: #6dd682;
+	border: solid 5px #53c269;
+}

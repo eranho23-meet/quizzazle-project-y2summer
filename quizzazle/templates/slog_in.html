@@ -2,35 +2,20 @@
 <html>
   <head>
   	<title>quizazzle</title>
+    <link rel="stylesheet" href="../static/logger_style.css">
   </head>
   <body>
 
     <form method="post" action="/slogin">
 
-      <div>
-        <label>Email address*</label>
-        <div>
-            <input type="email"  name="email" required>
-        </div>
-      </div>
+            <input type="email"  name="email" placeholder='email' class='txtbox' required>
 
-      <div>
-        <label>Password*</label>
-        <div>
-          <input type="password"  name="password" minlength="6" required>
-        </div>
-      </div>
+          <input type="password"  name="password" placeholder='password' minlength="6" class='txtbox' required>
 
-      <div>
-        <label>Username (if logging in for the first time)</label>
-        <div>
-          <input type="text"  name="username" maxlength="30">
-        </div>
-      </div>
-        
-      <div>
-          <input type="submit"/>
-      </div>
+          <input type="text"  name="username" placeholder='username (if logging for the first time)' maxlength="30" class='txtbox'>
+        <br>
+
+          <input type="submit" id='submit_button'/>
     </form>
 
     <a href='/logout'>log out</a>

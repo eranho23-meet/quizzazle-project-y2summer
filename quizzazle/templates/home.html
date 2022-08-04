@@ -2,10 +2,11 @@
 <html>
   <head>
   	<title>quizazzle</title>
+    <link rel="stylesheet" href="../static/home_style.css">
   </head>
   <body>
 
-    <h1>wow! {{is_logged}}</h1>
+    <h1 id='title'>hello {{name}}</h1>
 
     <a href='/quiz'>quick quiz</a>
 
@@ -13,6 +14,7 @@
     {% if is_logged %}
       <a href="/add_question">add a question</a>
 
+      <br><br><br><br>
       <a href="/my_stats">your stats</a>
 
       <a href='/logout'>log out</a>
@@ -20,7 +22,7 @@
       <a href="/slogin">signin / login</a>
     {% endif %}
 
-
+    <h1 style="color: #dab6e9; font-size: 100px;">empty spaceeeeee!!!!</h1>
 
   </body>
 </html>
